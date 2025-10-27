@@ -10,5 +10,6 @@ I’m a Biostatistics MS student at Columbia. This site hosts my projects, resum
 - 👉 See my [resume](resume.html)
 - 📬 Email me at [maximumride112@gmail.com](mailto:maximumride112@gmail.com)
 - 🐙 Visit my [GitHub](https://github.com/clementiaboo)
+- View my [Linkedin](https:/www.linkedin.com/in/clement-li-881696a4/) page 
 
 ![](https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif)

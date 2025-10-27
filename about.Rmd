@@ -1,3 +1,3 @@
-# This is Clement's awesome website
+### Hi there! I'm a Biostatistics MS student at Columbia interested in the interesection between Public Health and Data Science.
 
 ![](https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif)
