@@ -1,0 +1,34 @@
+---
+title: "Resume"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+## Summary
+Hi there! I am a MS Biostatistics Student at Columbia University.
+
+## Education
+- **Columbia University**, 2025–Present 
+- **UNC-Chapel Hill**, 2017–2021 
+
+## Experience
+#### STUDENT BUSINESS ANALYST — UNC Gillings School of Public Health (Chapel Hill, NC) · May 2022 - December 2022
+- Cleaned data sets by checking for unique IDs, duplicate entries, predetermined ranges of variables
+- Used arrays and do loops to classify medications as having either a high or low weight liability.
+
+#### TECHNICAL SUPPORT CONSULTANT  — UNC UNDERGRADUATE LIBRARY  · May 2019 - December 2019
+- Provide technical support for 400+ students and faculty members at UNC
+- Assist 20+ students, faculty,  and staff weekly to install, configure, maintain, and troubleshoot IT hardware and software
+
+## Projects
+- **BIOS-611 Final Project** — Analysis between student information and school performance using Docker and R; https://github.com/clementiaboo/bios-611-project
+
+## Skills
+**SAS, R, Tableau, Excel, SQL** 
+
+## Links
+- [Download PDF resume](Resume_Clement_Li_2025.pdf)
+- [GitHub](https://github.com/clementiaboo) · [LinkedIn](https://www.linkedin.com/in/https://www.linkedin.com/in/clement-li-881696a4/)
