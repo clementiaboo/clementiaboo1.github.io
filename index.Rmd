@@ -7,6 +7,8 @@ output: html_document
 
 I’m a Biostatistics MS student at Columbia. This site hosts my projects, resume, and contact info.
 
+
+- 🍽️ See my [NYC Restaurant Plots](rest_inspec_dashboard.html)
 - 👉 See my [resume](resume.html)
 - 📬 Email me at [maximumride112@gmail.com](mailto:maximumride112@gmail.com)
 - 🐙 Visit my [GitHub](https://github.com/clementiaboo)

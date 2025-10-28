@@ -1,0 +1,112 @@
+---
+title: "NYC Restaurant Inspections Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    theme: cerulean
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(flexdashboard)
+library(plotly)
+library(p8105.datasets)
+library(lubridate)
+library(janitor)
+```
+
+```{r}
+#Load dataset
+data("rest_inspec", package = "p8105.datasets")
+nyc <- rest_inspec |> clean_names()
+```
+
+```{r}
+#Clean rest_inspec data
+nyc <- rest_inspec|>
+  clean_names() |>
+  mutate(
+    inspection_date = ymd(inspection_date),
+    score = suppressWarnings(as.numeric(score)),
+    boro = as.factor(boro)
+  ) |>
+  filter(!is.na(inspection_date), !is.na(score), !is.na(boro)) |>
+  slice_sample(n = 20000)   # random sample 
+```
+
+```{r}
+#Filter data
+all_boros    <- sort(unique(nyc$boro))
+all_cuisines <- nyc |> count(cuisine_description, sort = TRUE) |> pull(cuisine_description)
+date_rng     <- range(nyc$inspection_date, na.rm = TRUE)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Top Cuisines by Inspection Count (Bar graph)
+
+```{r, echo=FALSE}
+df <- nyc |>
+  count(cuisine_description, sort = TRUE) |>
+  slice_head(n = 15) |>
+  arrange(n)
+
+plot_ly(
+  df,
+  x = ~n,
+  y = ~reorder(cuisine_description, n),
+  type = "bar",
+  orientation = "h"
+) |>
+  layout(
+    xaxis = list(title = "Number of Inspections"),
+    yaxis = list(title = "Cuisine")
+  )
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Average Score Over Time (Line Plot)
+
+```{r}
+df_line <- nyc |>
+group_by(month = floor_date(inspection_date, "month")) |>
+summarize(avg_score = mean(score, na.rm = TRUE), .groups = "drop")
+
+
+
+
+plot_ly(
+df_line,
+x = ~month,
+y = ~avg_score,
+type = "scatter",
+mode = "lines+markers"
+) |>
+layout(
+xaxis = list(title = "Month"),
+yaxis = list(title = "Average Inspection Score")
+)
+```
+
+### Score Distribution by Borough (Box Plot)
+
+```{r}
+plot_ly(
+nyc,
+x = ~boro,
+y = ~score,
+type = "box"
+) |>
+layout(
+xaxis = list(title = "Borough"),
+yaxis = list(title = "Score")
+)
+```
+
+
