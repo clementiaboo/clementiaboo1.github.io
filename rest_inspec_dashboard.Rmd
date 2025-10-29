@@ -20,12 +20,12 @@ library(janitor)
 ```{r}
 #Load dataset
 data("rest_inspec", package = "p8105.datasets")
-nyc <- rest_inspec |> clean_names()
+nyc = rest_inspec |> clean_names()
 ```
 
 ```{r}
 #Clean rest_inspec data
-nyc <- rest_inspec|>
+nyc = rest_inspec|>
   clean_names() |>
   mutate(
     inspection_date = ymd(inspection_date),
@@ -34,28 +34,43 @@ nyc <- rest_inspec|>
   ) |>
   filter(!is.na(inspection_date), !is.na(score), !is.na(boro)) |>
   slice_sample(n = 20000)   # random sample 
+
 ```
 
 ```{r}
 #Filter data
-all_boros    <- sort(unique(nyc$boro))
-all_cuisines <- nyc |> count(cuisine_description, sort = TRUE) |> pull(cuisine_description)
-date_rng     <- range(nyc$inspection_date, na.rm = TRUE)
+all_boros    = sort(unique(nyc$boro))
+all_cuisines = nyc |> count(cuisine_description, sort = TRUE) |> pull(cuisine_description)
+date_rng     = range(nyc$inspection_date, na.rm = TRUE)
 ```
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Top Cuisines by Inspection Count (Bar graph)
+```{r}
+library(dplyr)
+library(stringr)
 
-```{r, echo=FALSE}
-df <- nyc |>
+df_bar <- nyc |>
+  mutate(
+    cuisine_description = str_trim(cuisine_description),  # remove hidden spaces
+    cuisine_description = if_else(
+      str_detect(cuisine_description, "Latin"),  # match any that contain "Latin"
+      "Latin",
+      cuisine_description
+    )
+  ) |>
   count(cuisine_description, sort = TRUE) |>
-  slice_head(n = 15) |>
+  group_by(cuisine_description) |>
+  summarise(n = sum(n), .groups = "drop") |>
+  slice_max(n, n = 15) |>
   arrange(n)
+```
 
+```{r}
 plot_ly(
-  df,
+  df_bar,
   x = ~n,
   y = ~reorder(cuisine_description, n),
   type = "bar",
@@ -65,7 +80,6 @@ plot_ly(
     xaxis = list(title = "Number of Inspections"),
     yaxis = list(title = "Cuisine")
   )
-
 ```
 
 Column {data-width=350}
@@ -74,7 +88,7 @@ Column {data-width=350}
 ### Average Score Over Time (Line Plot)
 
 ```{r}
-df_line <- nyc |>
+df_line = nyc |>
 group_by(month = floor_date(inspection_date, "month")) |>
 summarize(avg_score = mean(score, na.rm = TRUE), .groups = "drop")
 
