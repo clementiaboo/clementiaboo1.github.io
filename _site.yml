@@ -2,26 +2,21 @@ name: "Yay Internet!"
 output_dir: "."
 
 navbar:
-  title: "🏠 Home"
   left:
-    - text: "💡 About"
-      href: about.html
-    - text: "📄 Resume"
-      href: resume.html
-
+    - text: "About"
+      href: "about.html"
+    - text: "Resume"
+      href: "resume.html"
   right:
-    - icon: fa-envelope fa-lg
+    - icon: fa-envelope
       href: "mailto:maximumride112@gmail.com"
-    - icon: fa-github fa-lg
+    - icon: fa-github
       href: "https://github.com/clementiaboo"
-    - icon: fa-linkedin fa-lg
+    - icon: fa-linkedin
       href: "https://www.linkedin.com/in/clement-li-881696a4/"
 
 output:
   html_document:
     theme: cerulean
     highlight: textmate
-    toc: true
-    toc_float: true
-    smooth_scroll: true
-    df_print: paged
+    toc: false

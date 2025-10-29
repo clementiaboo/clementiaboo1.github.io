@@ -1,17 +1,17 @@
 ---
 title: "Resume"
+site: .
 output:
   html_document:
+    theme: cerulean
     toc: true
     toc_depth: 2
     toc_float: true
 ---
-## Summary
-Hi there! I am a MS Biostatistics Student at Columbia University.
 
 ## Education
-- **Columbia University**, 2025–Present 
-- **UNC-Chapel Hill**, 2017–2021 
+- **Columbia University Biostatistics MS**, 2025–Present 
+- **UNC-Chapel Hill BA Statistics and Analytics**, 2017–2021 
 
 ## Experience
 #### STUDENT BUSINESS ANALYST — UNC Gillings School of Public Health (Chapel Hill, NC) · May 2022 - December 2022
