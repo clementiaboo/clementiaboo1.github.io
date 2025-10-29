@@ -92,9 +92,6 @@ df_line = nyc |>
 group_by(month = floor_date(inspection_date, "month")) |>
 summarize(avg_score = mean(score, na.rm = TRUE), .groups = "drop")
 
-
-
-
 plot_ly(
 df_line,
 x = ~month,
@@ -110,7 +107,13 @@ yaxis = list(title = "Average Inspection Score")
 
 ### Score Distribution by Borough (Box Plot)
 
-```{r}
+```{r warning=FALSE}
+nyc <- nyc |>
+  mutate(
+    boro = as.character(boro),
+    boro = na_if(boro, "0")   # turn "0" into NA
+  )
+
 plot_ly(
 nyc,
 x = ~boro,
